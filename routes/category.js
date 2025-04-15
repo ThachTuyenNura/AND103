@@ -91,7 +91,7 @@ router.put("/update", async function (req, res, next) {
 });
 
 //Xóa danh mục
-//https://and103-0ru9.onrender.com/category/delete?id=
+//https://and103-0ru9.onrender.com/category/delete?id=67fe1b331df436e1f17e6c01
 router.delete("/delete", async function (req, res, next) {
     try {
         const token = req.header("Authorization").split(" ")[1];
@@ -101,11 +101,11 @@ router.delete("/delete", async function (req, res, next) {
                     return res.status(403).json({ "status": 403, "err": err });
                 } else {
                     if (decoded.role != "admin") {
-                        return res.status(400).json({ success: false, message: 'Không phải tài khoản admin không được xóa danh mục' });
+                        res.status(400).json({ success: false, message: 'Không phải tài khoản admin không được xóa danh mục' });
                     } else {
                         const { id } = req.query;
                         await category.findByIdAndDelete(id);
-                        res.status(200).json({ success: true, message: 'Xóa danh mục thành công', item: item });
+                        res.status(200).json({ success: true, message: "Xóa user Thành công" });
                     }
                 }
             })
