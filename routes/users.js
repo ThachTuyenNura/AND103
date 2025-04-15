@@ -18,9 +18,13 @@ router.post("/register", async function (req, res, next) {
       if (existEmail) {
         res.status(400).json({ success: false, message: 'Email đã tồn tại, mời bạn nhập email khác' });
       } else {
-        var newUser = { email, password, name, gender, phone, address };
-        await userModel.create(newUser);
-        res.status(200).json({ status: true, message: "Đăng ký thành công" });
+        if (password.length < 1 && password.length > 10) {
+          res.status(400).json({ success: false, message: "Mật khẩu tối thiểu 5 ký tự, tối đa 30 ký tự" })
+        } else {
+          var newUser = { email, password, name, gender, phone, address };
+          await userModel.create(newUser);
+          res.status(200).json({ status: true, message: "Đăng ký thành công" });
+        }
       }
     }
   } catch (error) {

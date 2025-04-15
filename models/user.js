@@ -7,7 +7,7 @@ const user = new Schema({
     password: { type: String, required: true, minlength: 5, maxlength: 30, trim: true },
     name: { type: String, default: 'No name' },
     gender: { type: String, default: 'Unset' },
-    phone: { type: Number, minlength: 1, maxlength: 10 },
+    phone: { type: String, minlength: 1, maxlength: 10 },
     address: { type: String },
     role: { type: String, default: 'user' }
 });
