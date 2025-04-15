@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gửi mã OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .otp-container {
+            width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 15px 15px 0px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            color: green;
+        }
+
+        h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="otp-container">
+        <h3>Xin chào {{email}}</h3>
+        <h2>Gửi mã OTP</h2>
+        <form id="otpForm">
+            <input type="email" id="email" placeholder="Nhập email của bạn" required>
+            <button type="submit">Gửi mã OTP</button>
+            <div class="message" id="message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("otpForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            document.getElementById("message").textContent = `Mã OTP đã được gửi đến ${email}`;
+        });
+    </script>
+
+</body>
+
+</html>
