@@ -7,19 +7,28 @@ var userModel = require("../models/user");
 const JWT = require("jsonwebtoken");
 const config = require("../util/config");
 
-//localhost:3000/users/register
+//https://and103-0ru9.onrender.com/users/register
 router.post("/register", async function (req, res, next) {
   try {
-    const { username, password, name } = req.body;
-    var newUser = { username, password, name };
-    await userModel.create(newUser);
-    res.status(200).json({ status: true, message: "Đăng ký thành công" });
+    const { email, password, name, gender, phone, address } = req.body;
+    if (!email) {
+      res.status(400).json({ seccess: false, message: 'Hãy nhập email' })
+    } else {
+      const existEmail = await userModel.findOne({ email: email });
+      if (existEmail) {
+        res.status(400).json({ success: false, message: 'Email đã tồn tại, mời bạn nhập email khác' });
+      } else {
+        var newUser = { email, password, name, gender, phone, address };
+        await userModel.create(newUser);
+        res.status(200).json({ status: true, message: "Đăng ký thành công" });
+      }
+    }
   } catch (error) {
     res.status(400).json({ status: false, message: "Đăng ký thất bại" });
   }
 });
 
-//localhost:3000/users/login
+//https://and103-0ru9.onrender.com/users/login
 router.post("/login", async function (req, res, next) {
   try {
     const { username, password } = req.body;
@@ -36,7 +45,7 @@ router.post("/login", async function (req, res, next) {
   }
 });
 
-//localhost:3000/users/send-mail
+//https://and103-0ru9.onrender.com/users/send-mail
 router.post("/send-mail", async function (req, res, next) {
   try {
     const { to, subject, content } = req.body;
@@ -53,7 +62,7 @@ router.post("/send-mail", async function (req, res, next) {
   }
 });
 
-//localhost:3000/users/send-html
+//https://and103-0ru9.onrender.com/users/send-html
 router.post("/send-html", async function (req, res, next) {
   try {
     const { to, subject } = req.body;
