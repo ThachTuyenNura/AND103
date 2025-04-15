@@ -92,7 +92,7 @@ router.put("/update", async function (req, res, next) {
 
 //Xóa danh mục
 //https://and103-0ru9.onrender.com/category/delete?id=
-router.put("/delete", async function (req, res, next) {
+router.delete("/delete", async function (req, res, next) {
     try {
         const token = req.header("Authorization").split(" ")[1];
         if (token) {
