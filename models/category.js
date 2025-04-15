@@ -12,5 +12,6 @@ const category = new Schema({
         // maxlength: 50, // độ dài tối đa
         // default: 'No name' // giá trị mặc định
     },
+    image: { type: String }
 });
 module.exports = mongoose.models.category || mongoose.model('category', category);
