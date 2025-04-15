@@ -105,7 +105,7 @@ router.delete("/delete", async function (req, res, next) {
                     } else {
                         const { id } = req.query;
                         await category.findByIdAndDelete(id);
-                        res.status(200).json({ success: true, message: "Xóa user Thành công" });
+                        res.status(200).json({ success: true, message: "Xóa danh mục Thành công" });
                     }
                 }
             })
